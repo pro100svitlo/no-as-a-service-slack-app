@@ -132,7 +132,7 @@ These Terms, along with our Privacy Policy, constitute the entire agreement betw
 ## 17. Open Source
 
 This App is open source and available at:
-[https://github.com/YOUR_USERNAME/no-as-a-service-slack-app](https://github.com/YOUR_USERNAME/no-as-a-service-slack-app)
+[https://github.com/pro100svitlo/no-as-a-service-slack-app](https://github.com/pro100svitlo/no-as-a-service-slack-app)
 
 You may fork, modify, or contribute to the App under the terms of the MIT License.
 
@@ -143,7 +143,7 @@ THE APP IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. WE DISCLAIM ALL WARRAN
 ## 19. Support
 
 Support is provided on a best-effort basis through:
-- GitHub Issues: [Open an issue](https://github.com/YOUR_USERNAME/no-as-a-service-slack-app/issues)
+- GitHub Issues: [Open an issue](https://github.com/pro100svitlo/no-as-a-service-slack-app/issues)
 - Documentation: Available in the repository README
 
 We do not guarantee response times or resolution of issues.
@@ -151,7 +151,7 @@ We do not guarantee response times or resolution of issues.
 ## 20. Contact
 
 For questions about these Terms, contact us:
-- **GitHub**: [Open an issue](https://github.com/YOUR_USERNAME/no-as-a-service-slack-app/issues)
+- **GitHub**: [Open an issue](https://github.com/pro100svitlo/no-as-a-service-slack-app/issues)
 - **Email**: [Your contact email]
 
 ---

@@ -129,13 +129,13 @@ Data is processed in the cloud region where your Supabase instance is deployed. 
 
 If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
 
-- **GitHub Issues**: [Open an issue on GitHub](https://github.com/YOUR_USERNAME/no-as-a-service-slack-app/issues)
+- **GitHub Issues**: [Open an issue on GitHub](https://github.com/pro100svitlo/no-as-a-service-slack-app/issues)
 - **Email**: [Your contact email]
 
 ## Open Source
 
 This App is open source. You can review the complete source code and implementation at:
-[https://github.com/YOUR_USERNAME/no-as-a-service-slack-app](https://github.com/YOUR_USERNAME/no-as-a-service-slack-app)
+[https://github.com/pro100svitlo/no-as-a-service-slack-app](https://github.com/pro100svitlo/no-as-a-service-slack-app)
 
 ## Compliance
 
