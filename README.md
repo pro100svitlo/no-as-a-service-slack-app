@@ -50,18 +50,31 @@ Set in Supabase Dashboard > Edge Functions > Manage secrets:
 
 ```
 SLACK_SIGNING_SECRET=your_slack_signing_secret
+SLACK_CLIENT_ID=your_slack_client_id
+SLACK_CLIENT_SECRET=your_slack_client_secret
+SLACK_REDIRECT_URI=https://YOUR_PROJECT.supabase.co/functions/v1/slack-oauth
 ```
 
 ### 3. Slack App Configuration
 
 1. Go to [api.slack.com/apps](https://api.slack.com/apps)
 2. Create or select your app
-3. **Slash Commands**:
-   - Command: `/no`
-   - Request URL: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-no`
-4. **Interactivity & Shortcuts**:
-   - Enable Interactivity
-   - Request URL: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-no-interactions`
+
+#### OAuth & Permissions
+- **Redirect URLs**:
+  - Add: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-oauth`
+- **Bot Token Scopes**:
+  - `commands` - Use slash commands
+  - `chat:write` - Send messages
+
+#### Slash Commands
+- Command: `/no`
+- Request URL: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-no`
+- Short Description: "Get a creative no response"
+
+#### Interactivity & Shortcuts
+- Enable Interactivity
+- Request URL: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-no-interactions`
 
 ### 4. Initial Data Seed
 
@@ -70,6 +83,15 @@ Run the update function once to populate the database:
 ```bash
 curl https://YOUR_PROJECT.supabase.co/functions/v1/slack-no-update-reasons
 ```
+
+### 5. Installation
+
+To install the app to a workspace, users should visit:
+```
+https://slack.com/oauth/v2/authorize?client_id=YOUR_CLIENT_ID&scope=commands,chat:write&redirect_uri=https://YOUR_PROJECT.supabase.co/functions/v1/slack-oauth
+```
+
+Or create an "Add to Slack" button on your website.
 
 ## Usage
 
