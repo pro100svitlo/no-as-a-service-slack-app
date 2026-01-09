@@ -55,6 +55,8 @@ SLACK_CLIENT_SECRET=your_slack_client_secret
 SLACK_REDIRECT_URI=https://YOUR_PROJECT.supabase.co/functions/v1/slack-oauth
 ```
 
+> After successful OAuth, users are redirected to [INSTALLATION_SUCCESS.md](INSTALLATION_SUCCESS.md) which is automatically rendered by GitHub.
+
 ### 3. Slack App Configuration
 
 1. Go to [api.slack.com/apps](https://api.slack.com/apps)
