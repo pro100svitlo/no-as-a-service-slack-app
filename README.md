@@ -1,121 +1,52 @@
 # No-as-a-Service Slack App
 
-A Slack app that provides creative "no" responses using Supabase Edge Functions.
+## About
 
-## Features
+This project is inspired by the hilarious and simple [no-as-a-service](https://github.com/hotheadhacker/no-as-a-service) GitHub project. It's created for fun, to bring a bit more humor to daily work routines. Sometimes you just need a creative way to say "no"! 😄
 
+---
+
+## What It Does
+
+A Slack app that provides creative "no" responses using Supabase Edge Functions. Get access to 1055+ hilarious ways to say "no" right in your Slack workspace!
+
+**Features:**
 - 📣 `/no` slash command with 1055+ creative responses
 - 🔄 Regenerate button for new reasons
 - 📢 Post publicly to channel
 - ⛔ Cancel ephemeral messages
-- 🔄 Auto-update reasons weekly from source
-- 🗄️ Database-backed with fallback to external API
+- 🔄 Auto-update reasons weekly from the original source
 
-## Project Structure
+## Installation
 
-```
-├── .github/workflows/
-│   └── update-reasons.yml          # Weekly auto-update
-├── supabase/
-│   ├── config.toml                 # Supabase configuration
-│   ├── functions/
-│   │   ├── _shared/
-│   │   │   └── slack-utils.ts      # Shared utilities
-│   │   ├── slack-no/               # /no command handler
-│   │   ├── slack-no-interactions/  # Button interaction handler
-│   │   └── slack-no-update-reasons/ # Weekly update function
-│   └── migrations/
-│       └── 20260109150515_create_reasons_table.sql
-└── README.md
-```
+Add the app to your Slack workspace using the button below:
 
-## Setup
+[Add to Slack Button Here](https://slack.com/oauth/v2/authorize?client_id=2550998207090.10222067205218&scope=commands,chat:write&user_scope=)
 
-### 1. Supabase Setup
-
-```bash
-# Link to your Supabase project
-supabase link --project-ref YOUR_PROJECT_ID
-
-# Push migrations to create reasons table
-supabase db push
-
-# Deploy Edge Functions
-supabase functions deploy
-```
-
-### 2. Environment Variables
-
-Set in Supabase Dashboard > Edge Functions > Manage secrets:
-
-```
-SLACK_SIGNING_SECRET=your_slack_signing_secret
-SLACK_CLIENT_ID=your_slack_client_id
-SLACK_CLIENT_SECRET=your_slack_client_secret
-SLACK_REDIRECT_URI=https://YOUR_PROJECT.supabase.co/functions/v1/slack-oauth
-```
-
-> After successful OAuth, users are redirected to [INSTALLATION_SUCCESS.md](INSTALLATION_SUCCESS.md) which is automatically rendered by GitHub.
-
-### 3. Slack App Configuration
-
-1. Go to [api.slack.com/apps](https://api.slack.com/apps)
-2. Create or select your app
-
-#### OAuth & Permissions
-- **Redirect URLs**:
-  - Add: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-oauth`
-- **Bot Token Scopes**:
-  - `commands` - Use slash commands
-  - `chat:write` - Send messages
-
-#### Slash Commands
-- Command: `/no`
-- Request URL: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-no`
-- Short Description: "Get a creative no response"
-
-#### Interactivity & Shortcuts
-- Enable Interactivity
-- Request URL: `https://YOUR_PROJECT.supabase.co/functions/v1/slack-no-interactions`
-
-### 4. Initial Data Seed
-
-Run the update function once to populate the database:
-
-```bash
-curl https://YOUR_PROJECT.supabase.co/functions/v1/slack-no-update-reasons
-```
-
-### 5. Installation
-
-To install the app to a workspace, users should visit:
-```
-https://slack.com/oauth/v2/authorize?client_id=YOUR_CLIENT_ID&scope=commands,chat:write&redirect_uri=https://YOUR_PROJECT.supabase.co/functions/v1/slack-oauth
-```
-
-Or create an "Add to Slack" button on your website.
+After installation, you'll be redirected to a success page and the app will be ready to use immediately.
 
 ## Usage
 
-In Slack:
+Simply type `/no` in any Slack channel or direct message.
 
+You'll get:
+- A random creative "no" response (shown only to you initially)
+- 📣 **Post** - Share publicly to channel
+- 🔄 **Another reason** - Get a different response
+- ⛔ **Cancel** - Dismiss the message
+
+**Example:**
 ```
 /no
 ```
 
-You'll get:
-- A random creative "no" response
-- 📣 Post - Share publicly to channel
-- 🔄 Another reason - Get a different response
-- ⛔ Cancel - Dismiss the message
+Response: _"No, because I'd rather staple my hand to a burning building."_
 
-## Auto-Update
+Then choose to share it with everyone or get another hilarious reason!
 
-GitHub Actions automatically updates reasons every Monday at 3 AM UTC from the [no-as-a-service](https://github.com/hotheadhacker/no-as-a-service) repository.
+---
 
-## Data Source
-
-Reasons are sourced from [no-as-a-service](https://github.com/hotheadhacker/no-as-a-service) by [hotheadhacker](https://github.com/hotheadhacker).
+**Data Source:** Reasons are sourced from [no-as-a-service](https://github.com/hotheadhacker/no-as-a-service) by [hotheadhacker](https://github.com/hotheadhacker).
 
 ## License
 
