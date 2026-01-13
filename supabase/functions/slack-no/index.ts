@@ -1,8 +1,8 @@
 import { serve } from "https://deno.land/std@0.192.0/http/server.ts";
 import {
   verifySlackRequest,
-  fetchNoReason,
-  buildSlackResponse,
+  fetchMultipleReasons,
+  buildSlackResponseWithMultipleReasons,
 } from "../_shared/slack-utils.ts";
 
 // ==============================
@@ -40,8 +40,8 @@ serve(async (req) => {
       return new Response("Unknown command", { status: 400 });
     }
 
-    const reason = await fetchNoReason();
-    const slackResponse = buildSlackResponse(reason);
+    const reasons = await fetchMultipleReasons(3);
+    const slackResponse = buildSlackResponseWithMultipleReasons(reasons);
 
     return new Response(JSON.stringify(slackResponse), {
       headers: { "Content-Type": "application/json" },

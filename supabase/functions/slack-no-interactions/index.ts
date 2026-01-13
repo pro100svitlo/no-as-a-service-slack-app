@@ -1,8 +1,14 @@
 import { serve } from "https://deno.land/std@0.192.0/http/server.ts";
 import {
   verifySlackRequest,
-  fetchNoReason,
-  buildSlackResponse,
+  fetchMultipleReasons,
+  buildSlackResponseWithMultipleReasons,
+  ACTION_SELECT_REASON_1,
+  ACTION_SELECT_REASON_2,
+  ACTION_SELECT_REASON_3,
+  ACTION_POST_MESSAGE,
+  ACTION_REGENERATE_MESSAGE,
+  ACTION_CANCEL_MESSAGE,
 } from "../_shared/slack-utils.ts";
 
 // ==============================
@@ -77,7 +83,10 @@ serve(async (req) => {
 
     // Handle different button actions
     switch (action.action_id) {
-      case "post_message": {
+      case ACTION_SELECT_REASON_1:
+      case ACTION_SELECT_REASON_2:
+      case ACTION_SELECT_REASON_3:
+      case ACTION_POST_MESSAGE: {
         // Post the reason publicly to the channel
         const reason = action.value || "No reason provided";
         console.log("Posting message:", reason);
@@ -107,16 +116,16 @@ serve(async (req) => {
         );
       }
 
-      case "regenerate_message": {
+      case ACTION_REGENERATE_MESSAGE: {
         // Fetch a new reason and update the message
         console.log("Regenerating message");
         
-        // Fetch new reason and post asynchronously
+        // Fetch new reasons and post asynchronously
         (async () => {
           try {
-            const newReason = await fetchNoReason();
-            console.log("New reason fetched:", newReason);
-            const slackResponse = buildSlackResponse(newReason);
+            const newReasons = await fetchMultipleReasons(3);
+            console.log("New reasons fetched:", newReasons);
+            const slackResponse = buildSlackResponseWithMultipleReasons(newReasons);
 
             await fetch(payload.response_url, {
               method: "POST",
@@ -136,7 +145,7 @@ serve(async (req) => {
         return new Response("", { status: 200 });
       }
 
-      case "cancel_message": {
+      case ACTION_CANCEL_MESSAGE: {
         // Delete the ephemeral message
         console.log("Canceling message - deleting original");
         

@@ -8,6 +8,14 @@ export const NO_API_URL = "https://naas.isalman.dev/no";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL") ?? "";
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
 
+// Action IDs
+export const ACTION_SELECT_REASON_1 = "select_reason_1";
+export const ACTION_SELECT_REASON_2 = "select_reason_2";
+export const ACTION_SELECT_REASON_3 = "select_reason_3";
+export const ACTION_POST_MESSAGE = "post_message";
+export const ACTION_REGENERATE_MESSAGE = "regenerate_message";
+export const ACTION_CANCEL_MESSAGE = "cancel_message";
+
 if (!SLACK_SIGNING_SECRET) {
   throw new Error("Missing SLACK_SIGNING_SECRET");
 }
@@ -123,10 +131,50 @@ async function fetchReasonFromDatabase(): Promise<string | null> {
   return data.reason;
 }
 
+export async function fetchMultipleReasons(count: number = 3): Promise<Array<{ emoji: string; text: string }>> {
+  const reasons: Array<{ emoji: string; text: string }> = [];
+  const emojis = ["1️⃣", "2️⃣", "3️⃣"];
+
+  for (let i = 0; i < count; i++) {
+    try {
+      const reason = await fetchReasonFromDatabase() || await fetchNoReasonFromAPI();
+      reasons.push({ emoji: emojis[i], text: reason });
+    } catch (err) {
+      console.error(`Failed to fetch reason ${i + 1}:`, err);
+      // If one fails, still try to get others
+    }
+  }
+
+  if (reasons.length === 0) {
+    throw new Error("Failed to fetch any reasons");
+  }
+
+  return reasons;
+}
+
+async function fetchNoReasonFromAPI(): Promise<string> {
+  const res = await fetch(NO_API_URL, { method: "GET" });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch /no reason");
+  }
+
+  const data = await res.json();
+
+  if (!data?.reason) {
+    throw new Error("Invalid API response");
+  }
+
+  return data.reason;
+}
+
 // ==============================
 // Slack response builder
 // ==============================
-export function buildSlackResponse(reason: string) {
+export function buildSlackResponseWithMultipleReasons(reasons: Array<{ emoji: string; text: string }>) {
+  // Format the text with emojis and newlines
+  const formattedText = reasons.map(r => `${r.emoji} ${r.text}`).join("\n\n");
+
   return {
     response_type: "ephemeral",
     blocks: [
@@ -134,7 +182,7 @@ export function buildSlackResponse(reason: string) {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `> ${reason}`,
+          text: `> ${formattedText}`,
         },
       },
       {
@@ -142,21 +190,35 @@ export function buildSlackResponse(reason: string) {
         elements: [
           {
             type: "button",
-            text: { type: "plain_text", text: "📣 Post", emoji: true },
+            text: { type: "plain_text", text: "1️⃣", emoji: true },
             style: "primary",
-            action_id: "post_message",
-            value: reason,
+            action_id: ACTION_SELECT_REASON_1,
+            value: reasons[0].text,
+          },
+          {
+            type: "button",
+            text: { type: "plain_text", text: "2️⃣", emoji: true },
+            style: "primary",
+            action_id: ACTION_SELECT_REASON_2,
+            value: reasons[1]?.text || "",
+          },
+          {
+            type: "button",
+            text: { type: "plain_text", text: "3️⃣", emoji: true },
+            style: "primary",
+            action_id: ACTION_SELECT_REASON_3,
+            value: reasons[2]?.text || "",
           },
           {
             type: "button",
             text: { type: "plain_text", text: "🔄 Another reason", emoji: true },
-            action_id: "regenerate_message",
+            action_id: ACTION_REGENERATE_MESSAGE,
           },
           {
             type: "button",
             text: { type: "plain_text", text: "⛔ Cancel", emoji: true },
             style: "danger",
-            action_id: "cancel_message",
+            action_id: ACTION_CANCEL_MESSAGE,
           },
         ],
       },
