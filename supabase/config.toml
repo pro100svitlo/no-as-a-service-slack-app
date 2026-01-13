@@ -29,8 +29,5 @@ verify_jwt = false
 [functions.slack-no-interactions]
 verify_jwt = false
 
-[functions.slack-no-update-reasons]
-verify_jwt = false
-
 [functions.slack-oauth]
 verify_jwt = false
