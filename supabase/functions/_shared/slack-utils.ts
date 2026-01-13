@@ -172,8 +172,8 @@ async function fetchNoReasonFromAPI(): Promise<string> {
 // Slack response builder
 // ==============================
 export function buildSlackResponseWithMultipleReasons(reasons: Array<{ emoji: string; text: string }>) {
-  // Format the text with emojis and newlines
-  const formattedText = reasons.map(r => `${r.emoji} ${r.text}`).join("\n\n");
+  // Format the text with emojis, newlines, and blockquote for each line
+  const formattedText = reasons.map(r => `> ${r.emoji} ${r.text}`).join("\n>\n");
 
   return {
     response_type: "ephemeral",
@@ -182,7 +182,7 @@ export function buildSlackResponseWithMultipleReasons(reasons: Array<{ emoji: st
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `> ${formattedText}`,
+          text: formattedText,
         },
       },
       {
@@ -211,7 +211,7 @@ export function buildSlackResponseWithMultipleReasons(reasons: Array<{ emoji: st
           },
           {
             type: "button",
-            text: { type: "plain_text", text: "🔄 Another reason", emoji: true },
+            text: { type: "plain_text", text: "🔄 Another reasons", emoji: true },
             action_id: ACTION_REGENERATE_MESSAGE,
           },
           {
