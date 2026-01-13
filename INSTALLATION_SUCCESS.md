@@ -8,10 +8,10 @@
 
 1. **Open any channel** in your Slack workspace
 2. **Type `/no`** and press Enter
-3. **Enjoy 1055+ creative ways to say "no"!**
+3. **Get 3 creative ways to say "no" at once!**
 4. **Click buttons** to:
-   - 🔄 Get a different response
-   - 📣 Post publicly to the channel
+   - 1️⃣ 2️⃣ 3️⃣ Select which reason to share
+   - 🔄 Get 3 different responses
    - ⛔ Cancel the message
 
 ---
@@ -20,10 +20,15 @@
 
 ```
 You: /no
-Bot: 🚫 No, because the stars aren't aligned properly
+Bot: 
+1️⃣ No, because the stars aren't aligned properly
+
+2️⃣ No, because I have better things to do
+
+3️⃣ No, because that sounds like a terrible idea
 ```
 
-Click "🔄 Another reason" to get a new creative response, or "📣 Post" to share it with everyone in the channel!
+Click a number emoji button to share that reason, or click "🔄 Another reason" to get 3 new responses!
 
 ---
 

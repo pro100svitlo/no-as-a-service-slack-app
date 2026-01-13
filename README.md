@@ -12,8 +12,10 @@ A Slack app that provides creative "no" responses using Supabase Edge Functions.
 
 **Features:**
 - 📣 `/no` slash command with 1055+ creative responses
-- 🔄 Regenerate button for new reasons
-- 📢 Post publicly to channel
+- � Get 3 random "no" reasons at once
+- 1️⃣ 2️⃣ 3️⃣ Quick selection with emoji buttons
+- 🔄 Regenerate button for 3 new reasons
+- 📢 Post selected reason publicly to channel
 - ⛔ Cancel ephemeral messages
 - 🔄 Auto-update reasons weekly from the original source
 
@@ -30,9 +32,9 @@ After installation, you'll be redirected to a success page and the app will be r
 Simply type `/no` in any Slack channel or direct message.
 
 You'll get:
-- A random creative "no" response (shown only to you initially)
-- 📣 **Post** - Share publicly to channel
-- 🔄 **Another reason** - Get a different response
+- 3 random creative "no" responses (shown only to you initially)
+- 1️⃣ 2️⃣ 3️⃣ **Select** - Choose which reason to share publicly
+- 🔄 **Another reason** - Get 3 different responses
 - ⛔ **Cancel** - Dismiss the message
 
 **Example:**
@@ -40,9 +42,16 @@ You'll get:
 /no
 ```
 
-Response: _"No, because I'd rather staple my hand to a burning building."_
+Response: 
+```
+1️⃣ No, because I'd rather staple my hand to a burning building.
 
-Then choose to share it with everyone or get another hilarious reason!
+2️⃣ No, because I have better things to do with my time.
+
+3️⃣ No, because that sounds like a terrible idea.
+```
+
+Then choose which one to share with everyone or get 3 new reasons!
 
 ---
 

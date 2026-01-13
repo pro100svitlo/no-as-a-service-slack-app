@@ -16,7 +16,7 @@ When you install and use the App, we collect:
 
 ### 2. Interaction Data
 We process the following interaction data:
-- Button clicks (Post, Another reason, Cancel)
+- Button clicks (Select reason 1/2/3, Another reason, Cancel)
 - Message timestamps for updating or deleting messages
 - Channel information when posting public messages
 
@@ -30,8 +30,8 @@ We use the collected information solely to:
 
 1. **Provide Service Functionality**
    - Process `/no` slash commands
-   - Generate and display creative "no" responses
-   - Handle button interactions (regenerate, post publicly, cancel)
+   - Generate and display 3 creative "no" responses at once
+   - Handle button interactions (select reason, regenerate, cancel)
    - Deliver responses to the appropriate user or channel
 
 2. **Maintain Security**
