@@ -29,5 +29,5 @@ jobs:
           git add README.md
           if ! git diff --staged --quiet; then
             git commit -m "reasons were checked and updated. Last update date is $DATE"
-            git push origin master
+            git push origin main
           fi
