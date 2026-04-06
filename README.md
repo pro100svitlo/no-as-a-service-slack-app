@@ -57,7 +57,7 @@ Then choose which one to share with everyone or get 3 new reasons!
 
 **Data Source:** Reasons are sourced from [no-as-a-service](https://github.com/hotheadhacker/no-as-a-service) by [hotheadhacker](https://github.com/hotheadhacker).
 
-**Last reasons update:** March 30, 2026
+**Last reasons update:** April 06, 2026
 
 ## License
 
